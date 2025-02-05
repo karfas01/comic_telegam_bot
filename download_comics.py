@@ -2,8 +2,7 @@ import random
 import requests
 
 
-def download_img(img_url):
-    file_name = "comic_image.png"
+def download_img(img_url, file_name):
     response_img = requests.get(img_url)
     response_img.raise_for_status()
 
@@ -11,7 +10,7 @@ def download_img(img_url):
         f.write(response_img.content)
 
 
-def get_comic():
+def get_comic(file_name):
     current_url = "https://xkcd.com/info.0.json"
     response = requests.get(current_url)
     response.raise_for_status()
@@ -22,4 +21,4 @@ def get_comic():
     response = requests.get(url)
     response.raise_for_status()
 
-    download_img(response.json()["img"])
+    download_img(response.json()["img"], file_name)
