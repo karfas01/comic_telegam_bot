@@ -7,8 +7,11 @@ import os
 def main():
     load_dotenv()
 
-    tg_bot_key = os.getenv("TELEGRAM_BOT_TOKEN")
-    tg_chanal_name = os.getenv("CHAT_ID")
+    try:
+        tg_bot_key = os.environ["TELEGRAM_BOT_TOKEN"]
+        tg_chanal_name = os.environ["CHAT_ID"]
+    except KeyError as e:
+        raise RuntimeError(f"Обязательная переменная окружения не установлена: {e}")
 
     bot = telegram.Bot(token=tg_bot_key)
     try:
