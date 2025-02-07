@@ -3,11 +3,11 @@ import requests
 
 
 def download_img(img_url, file_name):
-    response_img = requests.get(img_url)
-    response_img.raise_for_status()
+    img_response = requests.get(img_url)
+    img_response.raise_for_status()
 
     with open(file_name, "wb") as f:
-        f.write(response_img.content)
+        f.write(img_response.content)
 
 
 def get_comic(file_name):
